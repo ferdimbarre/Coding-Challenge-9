@@ -22,5 +22,31 @@ set isAvailable(newAvailibility) {
     }
 }
 }; 
-
+// task 2: Create a Section Class
+class Section {
+    constructor (name, book) {
+    this.name = name;
+    this.books = []; // empty books array
+    } 
+    addBook(book){ 
+        this.books.push(book); // add book to array 
+    }
+    getAvailableBooks(amount) {
+        let availableBooks = 0;
+    this.books.forEach(book => {
+        if (book.isAvailable) {
+            availableBooks++; //update available books count 
+        }
+    }); 
+    return availableBooks; 
+    }
+    listBooks(){ 
+        let bookList = '';
+        this.books.forEach(book => {
+          let available = book.isAvailable ? `Available` : `Not Available`; 
+          bookList += `${book.title}, is ${available}`
+    })
+    return bookList //will return the list of books
+    }
+    }
 

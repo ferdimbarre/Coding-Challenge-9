@@ -73,3 +73,24 @@ returnBook(book){
 }
     }; 
 
+// Create a VIPPatron Class that Inherits from Patron
+class VIPPatron extends Patron {
+constructor(name, priority){
+    super(name);
+this.priority = priority
+}
+ borrowBooks(book){ //JS runs left-> right and top-> bottom, so first chec if the patron is vip and allow to borrow (priority)
+    if (book.isAvailable && this.priority) {
+        console.log(`Prioritize this patron: ${this.name}`)
+        book.isAvailable = false //updates availability
+this.borrowedBooks.push(book) //pushes book into array 
+    }
+    else if (book.isAvailable) { //patron isnt vip yet book is still available, can borrow 
+        book.isAvailable = false //updates availability
+        this.borrowedBooks.push(book) //pushes book into array 
+        console.log(`${this.name} borrowed ${book.title}`)
+    } else { console.log(`Book is not available to borrow`)
+
+    }
+}
+};

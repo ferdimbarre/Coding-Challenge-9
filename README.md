@@ -1,1 +1,2 @@
 # Coding-Challenge-9
+Scenario: A library wants to create a system to manage its books, patrons, and sections. The system should: 1. Store book information, such as title, author, ISBN, and availability status. 2. Store section information, including section name and books within the section. 3. Manage patrons, allowing them to borrow and return books. 4. Handle different types of patrons, such as regular patrons and VIP patrons, each with unique privileges. 5. Track the total number of books available in each section.

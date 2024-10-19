@@ -44,9 +44,9 @@ class Section {
         let bookList = '';
         this.books.forEach(book => {
           let available = book.isAvailable ? `Available` : `Not Available`; //checks if book is available 
-          bookList += `${book.title}, is ${available}`
+          bookList += `${book.title}, is ${available}      `
     })
-    return bookList //will return the list of books
+    console.log(bookList) //will return the list of books
     }
     // add a method calculateTotalBooksAvailable()
     calculateTotalBooksAvailable(){
@@ -61,15 +61,13 @@ class Section {
 
     }
     
-
-
     // create patron class
     class Patron {
 constructor (name, borrowedBooks) {
 this.name = name; 
 this.borrowedBooks = []; 
 }
-borrowBooks(book){
+borrowBook(book){
     if (book.isAvailable) {
 book.isAvailable = false //updates availability
 this.borrowedBooks.push(book) //pushes book into array 
@@ -93,7 +91,7 @@ constructor(name, priority){
     super(name);
 this.priority = priority
 }
- borrowBooks(book){ //JS runs left-> right and top-> bottom, so first chec if the patron is vip and allow to borrow (priority)
+ borrowBook(book){ //JS runs left-> right and top-> bottom, so first chec if the patron is vip and allow to borrow (priority)
     if (book.isAvailable && this.priority) {
         console.log(`Prioritize this patron: ${this.name}`)
         book.isAvailable = false //updates availability
@@ -109,3 +107,38 @@ this.borrowedBooks.push(book) //pushes book into array
 }
 };
 
+// Create and Manage Sections and Patrons
+
+// Create sections
+const fiction = new Section("Fiction");
+const science = new Section("Science");
+
+// Create books
+const book1 = new Book("1984", "George Orwell", "1234567890");
+const book2 = new Book("Brave New World", "Aldous Huxley", "0987654321");
+const book3 = new Book("The Selfish Gene", "Richard Dawkins", "1122334455");
+
+// Add books to sections
+fiction.addBook(book1);
+fiction.addBook(book2);
+science.addBook(book3);
+
+// Create patrons
+const regularPatron = new Patron("John Doe");
+const vipPatron = new VIPPatron("Jane Smith", true);
+
+// Regular patron tries to borrow a book
+regularPatron.borrowBook(book1);
+
+// VIP patron tries to borrow a book (has priority)
+vipPatron.borrowBook(book1);
+
+// Return the book
+regularPatron.returnBook(book1);
+
+// List books and availability
+fiction.listBooks();
+
+// Calculate total available books in each section
+console.log(`Total available books in Fiction: ${fiction.getAvailableBooks()}`);
+console.log(`Total available books in Science: ${science.getAvailableBooks()}`);

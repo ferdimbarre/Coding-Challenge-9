@@ -48,8 +48,22 @@ class Section {
     })
     return bookList //will return the list of books
     }
+    // add a method calculateTotalBooksAvailable()
+    calculateTotalBooksAvailable(){
+        let totalBooksAvailable = 0 
+        this.books.forEach(book => {
+            if (book.isAvailable) {
+                totalBooksAvailable++; //  sum amount of available books 
+            }
+        }); return totalBooksAvailable
+
     }
-    // Create a Patron Class
+
+    }
+    
+
+
+    // create patron class
     class Patron {
 constructor (name, borrowedBooks) {
 this.name = name; 
@@ -94,3 +108,4 @@ this.borrowedBooks.push(book) //pushes book into array
     }
 }
 };
+
